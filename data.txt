@@ -1,0 +1,66 @@
+User Roles
+Admin: Can add/view officers, users, and reports.
+Officer: Can view complaints, users, update complaint status, and view complaint locations on a map.
+User: Can submit complaint reports with details and images.
+Core Features
+User registration and authentication.
+Complaint submission with details and images.
+Complaint status updates by officers.
+Map view of complaint locations.
+Admin dashboard for managing users and officers.
+Technology Stack
+Frontend: React
+Backend: Node.js, Express.js
+Database: MongoDB
+Mapping: Google Maps API or similar
+Project Structure
+A basic project structure might look like this:
+
+client/
+  public/
+  src/
+    components/
+    pages/
+      AdminDashboard.js
+      OfficerDashboard.js
+      UserDashboard.js
+    utils/
+      api.js
+      auth.js
+    App.js
+    index.js
+server/
+  config/
+    db.js
+  controllers/
+    adminController.js
+    officerController.js
+    userController.js
+    complaintController.js
+  models/
+    Admin.js
+    Officer.js
+    User.js
+    Complaint.js
+  routes/
+    adminRoutes.js
+    officerRoutes.js
+    userRoutes.js
+    complaintRoutes.js
+  index.js
+Development Steps
+Backend Development
+Set up MongoDB: Create a database with collections for users, officers, admins, and complaints.
+Define Models: Create Mongoose models for each collection, defining their schemas (name, email, password, role, etc. for users, officers, and admins; complaint details, location, status, images for complaints).
+Create Controllers: Implement logic for handling CRUD operations for users, officers, admins, and complaints.
+Define Routes: Set up API endpoints for different functionalities using Express.js routers.
+Implement Authentication: Use JWT or similar for user authentication and authorization.
+Image Upload: Integrate a library like multer for handling image uploads and storage.
+Frontend Development
+Set up React App: Create a React app using Create React App.
+Component Structure: Create components for navigation, forms, maps, and data display.
+User Interface: Design the user interface for different roles (admin, officer, user) using React components.
+API Integration: Use Axios or Fetch API to interact with the backend API.
+Map Integration: Integrate Google Maps API or a similar mapping library to display complaint locations.
+State Management: Use Redux or Context API for managing application state.
+Authentication: Implement user authentication and authorization using local storage or cookies.
