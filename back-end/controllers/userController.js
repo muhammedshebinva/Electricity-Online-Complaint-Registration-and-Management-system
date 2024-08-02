@@ -213,11 +213,12 @@ const createComplaint = async (req, res) => {
         const userId = decoded.id;  // Assuming 'userId' is the claim for user ID
 
         // 2. Extract complaint data from request body
-         const { title, description, location, images } = req.body;
+         const { title, description,department, location, images } = req.body;
         // 4. Create new complaint document
         const newComplaint = new Complaint({
           title,
           description,
+          department,
           location, // Assuming location data is already in GeoJSON format
           images,
           status: 'pending', // Set default status as before

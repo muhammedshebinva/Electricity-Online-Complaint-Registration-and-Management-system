@@ -208,13 +208,11 @@ const getAllUsers = async (req, res) => {
         return res.status(404).json({ message: 'Complaint not found' });
       }
   
-      complaint.status   
-   = status;
+      complaint.status = status;
       const updatedComplaint = await complaint.save();
   
       res.status(200).json(updatedComplaint);
-    } catch (error)   
-   {
+    } catch (error){
       console.error(error);
       res.status(500).json({ message: 'Server Error' });
     }
