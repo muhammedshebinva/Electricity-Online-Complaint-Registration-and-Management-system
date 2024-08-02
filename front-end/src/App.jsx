@@ -1,14 +1,21 @@
 
 import './App.css'
+import React from 'react';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
 
-function App() {
+import UserDashboard from './pages/UserDashboard';
 
-
+const App = () => {
   return (
-    <>
-     <h1>Hello</h1>
-    </>
-  )
-}
+    <BrowserRouter>
+    <Routes>
+          <Route path="/" element={<UserDashboard />}/>
+            
+          {/* Add more routes as needed */}
+          </Routes>
+        </BrowserRouter>
+  );
+};
 
-export default App
+export default App;
+
