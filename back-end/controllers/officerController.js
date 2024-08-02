@@ -47,7 +47,7 @@ const getOfficerComplaints = async (req, res) => {
     }
   };
 
-  const updateComplaintStatus = async (req, res) => {
+const updateComplaintStatus = async (req, res) => {
     try {
       const { id } = req.params;
       const { status } = req.body;

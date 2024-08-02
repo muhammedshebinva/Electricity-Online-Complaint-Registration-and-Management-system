@@ -22,6 +22,8 @@ const complaintSchema = new mongoose.Schema({
     enum: ['pending', 'inProgress', 'resolved'],
     default: 'pending'
   },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  
   createdAt: {
     type: Date,
     default: Date.now

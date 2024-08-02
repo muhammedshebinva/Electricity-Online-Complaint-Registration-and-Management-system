@@ -4,7 +4,7 @@ const adminController = require('../controllers/adminController');
 const authMiddleware = require('../middleware/authMiddleware'); // Assuming JWT authentication
 
 // Protect all admin routes
-router.use(authMiddleware);
+//router.use(authMiddleware);
 
 // User routes
 router.get('/users', adminController.getAllUsers);

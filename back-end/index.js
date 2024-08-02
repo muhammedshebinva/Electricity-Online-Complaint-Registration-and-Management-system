@@ -1,7 +1,8 @@
 const express = require('express');
-const dotenv = require('dotenv');
+
 const connectDB = require('./config/db');
 //const errorHandler = require('./middleware/error');
+const dotenv = require('dotenv');
 dotenv.config();
 
 const cors = require('cors');
@@ -40,6 +41,10 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ message: 'Something went wrong' });
 });
+
+
+const secret =  process.env.JWT_SECRET
+console.log("secret",secret)
 
 const PORT = process.env.PORT || 5001;
 

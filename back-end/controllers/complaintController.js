@@ -2,17 +2,37 @@ const Complaint = require('../models/Complaint');
 
 const createComplaint = async (req, res) => {
   try {
-    const { user, location, landmark, complaint, images } = req.body;
+    // const { user, location, landmark, complaint, images } = req.body;
 
-    const newComplaint = await Complaint.create({
-      user,
-      location,
-      landmark,
-      complaint,
+    // const newComplaint = await Complaint.create({
+    //   user,
+    //   location,
+    //   landmark,
+    //   complaint,
+    //   images,
+    // });
+    
+
+    // res.status(201).json(newComplaint);
+
+    const { title, description, location, images } = req.body;
+    // 4. Create new complaint document
+    const newComplaint = new Complaint({
+      title,
+      description,
+      location, // Assuming location data is already in GeoJSON format
       images,
+      status: 'pending', // Set default status as before
+      user: userId, // Use the extracted user ID from JWT verification
+      createdAt: Date.now(),
     });
 
+       // 5. Save the complaint document
+    await newComplaint.save();
+
     res.status(201).json(newComplaint);
+
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server Error' });

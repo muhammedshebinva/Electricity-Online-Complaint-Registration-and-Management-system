@@ -2,9 +2,9 @@ const User = require('../models/User');
 const Complaint = require('../models/Complaint');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const dotenv = require('dotenv')
-dotenv.config()
-const JWT_SECRET = 'fhgdvxjcsvdcj'
+const dotenv = require('dotenv');
+dotenv.config();
+const JWT_SECRET = process.env.JWT_SECRET;
 
 // const generateToken = (id) => {
 //   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d'   
@@ -84,23 +84,7 @@ const loginUser = async (req, res) => {
   }
 };
 
-// const getUserProfile = async (req, res) => {
-//   try {
-//     // Assuming the user ID is available in the request (e.g., from JWT)
-//     const userId = req.user.id; // Replace with actual logic to get user ID
 
-//     const user = await User.findById(userId).select('-password'); // Exclude password
-
-//     if (!user) {
-//       return res.status(404).json({ message: 'User not found' });
-//     }
-
-//     res.status(200).json(user);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: 'Server Error'});
-//   }
-// };
 
 const getUserProfile = async (req, res) => {
   try {
@@ -206,51 +190,9 @@ const updateUserProfile = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 
-
-  // try {
-  //   // Assuming the user ID is available in the request (e.g., from JWT)
-  //   const userId = req.user.id; // Replace with actual logic to get user ID
-
-  //   const { name, email } = req.body;
-
-  //   const user = await User.findByIdAndUpdate(
-  //     userId,
-  //     { name, email },
-  //     { new: true }
-  //   );
-
-  //   if (!user) {
-  //     return res.status(404).json({ message: 'User not found' });
-  //   }
-
-  //   res.status(200).json(user);
-  // } catch (error) {
-  //   console.error(error);
-  //   res.status(500).json({ message: 'Server Error' });
-  // }
 };
 
-// const createComplaint = async (req, res) => {
-//   try {
-//     // Assuming the user ID is available in the request (e.g., from JWT)
-//     const userId = req.user.id; // Replace with actual logic to get user ID
 
-//     const { location, landmark, complaint, images } = req.body;
-
-//     const newComplaint = await Complaint.create({
-//       user: userId,
-//       location,
-//       landmark,
-//       complaint,
-//       images,
-//     });
-
-//     res.status(201).json(newComplaint);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: 'Server Error' });
-//   }
-// };
 
 const createComplaint = async (req, res) => {
   try {

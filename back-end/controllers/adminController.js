@@ -18,8 +18,7 @@ const getAllUsers = async (req, res) => {
     try {
       const users = await User.find();
       res.status(200).json(users);
-    } catch   
-   (error) {
+    } catch(error) {
       console.error(error);
       res.status(500).json({ message: 'Server Error' });
     }
@@ -67,8 +66,7 @@ const getAllUsers = async (req, res) => {
         return res.status(404).json({ message: 'User not found' });
       }
   
-      // Update user   
-   fields
+      // Update user fields
       user.name = name || user.name;
       user.email = email || user.email;
       user.role = role || user.role;
@@ -192,6 +190,7 @@ const getAllUsers = async (req, res) => {
   const getAllComplaints = async (req, res) => {
     try {
       const complaints = await Complaint.find().populate('user'); // Populate user information
+      //const complaints = await Complaint.find();
       res.status(200).json(complaints);
     } catch (error) {
       console.error(error);
