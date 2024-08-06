@@ -9,20 +9,10 @@ import Registration from './pages/Registration';
 import { UserContextProvider } from './provider/userContext';
 import { AuthContextProvider } from './provider/authContext';
 
+import UserProfile from './pages/UserProfile';
+
 const App = () => {
     return (
-        // <AuthContext>
-        //     <Router>
-        //         <Routes>
-        //             <Route path="/" element={<Layout />}> 
-        //             <Route index element={<Home/>} />
-        //             <Route path="/login" element={<Login />} />
-        //             <Route path="/users" element={<Users />} />
-        //             </Route>
-                    
-        //         </Routes>
-        //     </Router>
-        // </AuthContext>
         <AuthContextProvider>
         <Router>
                 <Routes>
@@ -31,6 +21,7 @@ const App = () => {
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Registration/>} />
                     <Route path="/protected" element={<Users />} />
+                    <Route path='/profile' element={<UserProfile/>}/>
                     </Route>  
                 </Routes>
             </Router>

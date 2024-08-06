@@ -1,4 +1,4 @@
-
+import axios from 'axios'
 const BASE_URL = 'http://localhost:5001/api/users';
 let token = ''; // Variable to store JWT token
 
@@ -75,6 +75,43 @@ export const registerUser = async (formData) => {
   }
 };
 
+// export const getUserProfile = async (token)=>{
+
+//     try{
+//         const response = await fetch(`${BASE_URL}/profile`, {
+//             headers: {
+//                  'Authorization': `Bearer ${token}`,
+//               },
+//         })
+//         console.log("hejkbjkdbk",response.json())
+//         if(!response.ok){
+//             throw new Error('Network response was not okay')
+//         }
+//         const data = await response.json();
+//         return data
+//     }catch(error){
+//         console.log("get user profile error",error)
+//     }
+// }
+
+export const getUserProfile = async (token) =>{
+    try{
+        const config= {
+            headers: {
+                authorization : `Bearer ${token}`
+            } 
+        }
+        const response = await axios.get(`${BASE_URL}/profile`, config);
+        console.log("response get profile", response.data)
+        
+        return response.data;
+    }catch(error){
+        console.log("get user profile error",error)
+    }
+}
+
+
+
 export const createComplaint = async (formData) => {
   try {
     const response = await fetchWithToken(`${BASE_URL}/complaints`, {
@@ -92,6 +129,4 @@ export const createComplaint = async (formData) => {
   }
 };
 
-// module.exports ={
-//     registerUser
-// }
+
