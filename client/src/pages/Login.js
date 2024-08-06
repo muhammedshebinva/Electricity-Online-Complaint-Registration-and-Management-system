@@ -1,27 +1,32 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AuthContext from '../context/AuthContext';
-import api from '../utils/api';
+import AuthContext from '../provider/authContext';
+import { loginUser } from '../utils/userApi'
 
 const Login = () => {
     const [formData, setFormData] = useState({
         email: '',
         password: ''
       });
+
+      const [redirect,setRedirect]= useState(false);
+      const {setUserInfo,token,login} = useContext(AuthContext);
+      
       const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
-    };
+      };
     
-    const { login } = useContext(AuthContext);
+    
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const token = await api.login(formData);
-            login(token);
-            navigate('/users');
+            const response = await loginUser(formData);
+            login(response.token);
+            setUserInfo(response);
+            navigate('/protected');
         } catch (error) {
             console.error(error);
         }
