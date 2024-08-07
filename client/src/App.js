@@ -12,6 +12,8 @@ import { AuthContextProvider } from './provider/authContext';
 import UserProfile from './pages/UserProfile';
 import ComplientRegister from './pages/ComplientRegister';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const App = () => {
     return (
         <AuthContextProvider>

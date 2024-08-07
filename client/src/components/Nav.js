@@ -2,12 +2,10 @@ import React, { useContext } from 'react'
 import {  Link } from "react-router-dom";
 import AuthContext from '../provider/authContext';
 function Nav() {
-    const {logout, setUserInfo,token} = useContext(AuthContext);
+    const {logout,token} = useContext(AuthContext);
      
     function handleLogout(){
-
-        logout()
-        
+        logout()   
     }
   return (
     <div>

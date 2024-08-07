@@ -2,6 +2,7 @@ import React, { useState, useRef, useContext } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'leaflet'; // Import Leaflet components
 import '../App.css';
 import AuthContext from '../provider/authContext';
+import { Navigate, useNavigate } from 'react-router-dom'
 import { createComplaint } from '../utils/userApi'
 const ComplientRegister = () => {
 
@@ -17,7 +18,8 @@ const ComplientRegister = () => {
     },
     images: [],
   });
-
+ 
+  
 
   const handleChange = (event) => {
     const { name, value, files } = event.target;
@@ -27,23 +29,25 @@ const ComplientRegister = () => {
     }));
   };
 
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
     // Implement form submission logic here
     // For example, send data to an API using fetch or Axios
     try{
         const response = await createComplaint(formData, token);
-        console.log(response)
         alert("Complient Submitted")
+        navigate('/')
 
     }catch(error){
         console.log('register complient Error', error)
         alert('Complient Registration failed. Please try again.');
     }
-
-    console.log('Form submitted:', formData);
   };
 
+  if(!token){
+    return <Navigate to='/login'/>
+  }
   return (
     <div className='register-form'>
 

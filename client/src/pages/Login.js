@@ -9,7 +9,7 @@ const Login = () => {
         password: ''
       });
 
-      const [redirect,setRedirect]= useState(false);
+      
       const {setUserInfo,token,login} = useContext(AuthContext);
       
       const handleInputChange = (e) => {
@@ -26,7 +26,7 @@ const Login = () => {
             const response = await loginUser(formData);
             login(response.token);
             setUserInfo(response);
-            navigate('/protected');
+            navigate('/complient');
         } catch (error) {
             console.error(error);
         }
