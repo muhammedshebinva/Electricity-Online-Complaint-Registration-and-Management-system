@@ -25,4 +25,5 @@ export const getUsers = async (token) => {
     return response.data;
 };
 
+
 export default api;

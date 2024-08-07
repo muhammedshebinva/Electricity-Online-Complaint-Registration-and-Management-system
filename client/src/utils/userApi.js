@@ -112,14 +112,19 @@ export const getUserProfile = async (token) =>{
 
 
 
-export const createComplaint = async (formData) => {
+export const createComplaint = async (formData,token) => {
   try {
-    const response = await fetchWithToken(`${BASE_URL}/complaints`, {
+    const response = await fetch(`${BASE_URL}/complaints`, {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': `Bearer ${token}`,
+      },
       body: JSON.stringify(formData),
     });
 
     if (!response.ok) {
+      console.log(response)
       throw new Error('Failed to create complaint');
     }
 

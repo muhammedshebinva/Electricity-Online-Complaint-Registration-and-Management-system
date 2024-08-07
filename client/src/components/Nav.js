@@ -39,6 +39,9 @@ function Nav() {
              <button onClick={handleLogout}>logout</button>
           </li>
         }
+        <li>
+        <Link to='/complient'>Register Complient</Link>
+        </li>
         </ul>
       </nav>
       </div>

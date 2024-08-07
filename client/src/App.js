@@ -10,6 +10,7 @@ import { UserContextProvider } from './provider/userContext';
 import { AuthContextProvider } from './provider/authContext';
 
 import UserProfile from './pages/UserProfile';
+import ComplientRegister from './pages/ComplientRegister';
 
 const App = () => {
     return (
@@ -22,6 +23,7 @@ const App = () => {
                     <Route path="/register" element={<Registration/>} />
                     <Route path="/protected" element={<Users />} />
                     <Route path='/profile' element={<UserProfile/>}/>
+                    <Route path='/complient' element= {<ComplientRegister/>}/>
                     </Route>  
                 </Routes>
             </Router>

@@ -202,6 +202,8 @@ const createComplaint = async (req, res) => {
       return res.status(401).json({ message: 'Unauthorized: Missing JWT token' });
     }
 
+  
+
     // 2. Extract JWT token from header
     const token = authHeader.split(' ')[1];
 
@@ -214,6 +216,7 @@ const createComplaint = async (req, res) => {
 
         // 2. Extract complaint data from request body
          const { title, description,department, location, images } = req.body;
+        
         // 4. Create new complaint document
         const newComplaint = new Complaint({
           title,
@@ -243,11 +246,6 @@ const createComplaint = async (req, res) => {
       return res.status(500).json({ message: 'JWT secret not configured' });
     }
 
-    // - Option B: Using a frontend library (if applicable)
-    //   Refer to the specific library's documentation for token extraction methods.
-
-    // 4. Handle other potential errors gracefully (optional)
-    //   - Include error handling for invalid user IDs or database issues.
 
   } catch (error) {
     console.error(error);
