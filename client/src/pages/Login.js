@@ -26,7 +26,7 @@ const Login = () => {
             const response = await loginUser(formData);
             login(response.token);
             setUserInfo(response);
-            navigate('/complient');
+            
         } catch (error) {
             console.error(error);
         }
