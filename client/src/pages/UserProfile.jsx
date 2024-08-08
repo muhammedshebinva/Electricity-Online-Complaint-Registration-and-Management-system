@@ -9,7 +9,7 @@ function UserProfile() {
     const [isLoading, setIsloading] = useState(false);
     const [error, setError] = useState(null);
 
-    const {token} = useContext(AuthContext)
+    const {token,setLastRoute} = useContext(AuthContext)
     useEffect(()=>{
 
         const fetchUserProfile  = async ()=>{
@@ -36,7 +36,9 @@ function UserProfile() {
     
 
     if(!token){
+        setLastRoute('/profile')
         return <Navigate to='/login'/>
+        
     }
 
   return (

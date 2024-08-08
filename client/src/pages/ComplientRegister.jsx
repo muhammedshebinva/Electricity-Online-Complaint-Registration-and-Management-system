@@ -6,7 +6,7 @@ import { Navigate, useNavigate } from 'react-router-dom'
 import { createComplaint } from '../utils/userApi'
 const ComplientRegister = () => {
 
-  const {token} = useContext(AuthContext)
+  const {token, setLastRoute} = useContext(AuthContext)
 
   const [formData, setFormData] = useState({
     title: '',
@@ -46,7 +46,9 @@ const ComplientRegister = () => {
   };
 
   if(!token){
+    setLastRoute('/complient')
     return <Navigate to='/login'/>
+
   }
   return (
     <div className='register-form'>

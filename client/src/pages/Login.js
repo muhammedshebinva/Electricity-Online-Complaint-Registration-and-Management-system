@@ -75,7 +75,7 @@ const Login = () => {
     // </div>
     const defaultTheme = createTheme();
     
-    const {setUserInfo,token,login} = useContext(AuthContext);
+    const {setUserInfo,token,login,lastRoute} = useContext(AuthContext);
     const navigate = useNavigate();
 
       const handleSubmit = async (event) => {
@@ -92,7 +92,7 @@ const Login = () => {
             const response = await loginUser(userData);
             login(response.token);
             setUserInfo(response);
-            navigate('/')
+            navigate(lastRoute)
             
         } catch (error) {
             console.error(error);
