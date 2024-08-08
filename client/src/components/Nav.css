@@ -24,6 +24,11 @@ nav li{
     color: black;
 }
 
+.manuLink{
+  text-decoration: none;
+  color: black;
+}
+
 .myLink :hover{
     background-color: #f0f0f0;
 }
@@ -45,7 +50,9 @@ nav li:first-child{
     position: relative;
     display: inline-block;
   }
-  
+  .profileAvathar{
+    padding-right: 15px;
+  }
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
     display: none;

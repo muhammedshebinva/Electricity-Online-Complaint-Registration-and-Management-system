@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { getUserProfile } from '../utils/userApi' 
 import AuthContext from '../provider/authContext'
+import { Navigate } from 'react-router-dom';
 
 function UserProfile() {
     const [userProfile, setUserProfile] = useState(null);
@@ -31,6 +32,12 @@ function UserProfile() {
         }
       
     },[token])
+
+    
+
+    if(!token){
+        return <Navigate to='/login'/>
+    }
 
   return (
     <div>
