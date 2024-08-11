@@ -3,26 +3,125 @@ const User = require('../models/User');
 const Officer = require('../models/Officer');
 const Complaint = require('../models/Complaint');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = process.env.JWT_SECRET;
 
+const generateToken = (id, email) => {
+  return jwt.sign({ id, email }, JWT_SECRET, { expiresIn: '30d'   
+ });
+};
+
+
+////
+//crete admin
 const createAdmin = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-    const admin = await Admin.create({ name, email, password });
-    res.status(201).json(admin);
+   
+    // Check if user already exists
+    const existingAdmin = await Admin.findOne({ email });
+    if (existingAdmin) {
+      return res.status(400).json({ message: 'Admin already exists' });
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create new user
+    const newAdmin = await Admin.create({
+      name,
+      email,
+      password: hashedPassword,
+    });
+
+    // Generate JWT token
+    const token = generateToken(newAdmin._id, newAdmin.email);
+
+    res.status(201).json({
+      _id: newAdmin._id,
+      name: newAdmin.name,
+      email: newAdmin.email,
+      role:newAdmin.role,
+      token,
+    });
+    
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
   }
 };
 
+//login Admin
+const loginAdmin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    // Find user by email
+    const admin = await Admin.findOne({ email });
+    if (!admin) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    // Compare passwords
+    const isMatch = await bcrypt.compare(password, admin.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    // Generate JWT token
+    const token  = generateToken(admin._id,admin.email);
+
+    res.status(200).json({
+      _id: admin._id,
+      name: admin.name,
+      email: admin.email,
+      token,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({message: 'Server Error' });
+  }
+};
+
+// all users
 const getAllUsers = async (req, res) => {
+
+  try {
+    // 1. Verify JWT presence in the request header
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ message: 'Unauthorized: Missing JWT token' });
+    }
+
+    // 2. Extract JWT token from header
+    const token = authHeader.split(' ')[1];
+    //console.log(token)
+    if (JWT_SECRET) { 
     try {
+      const decoded = jwt.verify(token, JWT_SECRET);
+      const adminId = decoded.id;
+      const currAdmin = await Admin.findById(adminId)
+      if(!currAdmin){
+        return res.status(404).json({ message: 'admin not found' });
+      }
       const users = await User.find();
       res.status(200).json(users);
+      
     } catch(error) {
       console.error(error);
       res.status(500).json({ message: 'Server Error' });
     }
+
+  } else {
+    return res.status(500).json({ message: 'JWT secret not configured' });
+  }
+
+} catch (error) {
+  console.error(error);
+  res.status(500).json({ message: 'Server Error' });
+}
   };
+
+
 
   const createUser = async (req, res) => {
     try {
@@ -220,6 +319,7 @@ const getAllUsers = async (req, res) => {
 
   module.exports = {
   createAdmin,
+  loginAdmin,
   getAllUsers,
   createUser,
   updateUser,
@@ -229,5 +329,5 @@ const getAllUsers = async (req, res) => {
   updateOfficer,
   deleteOfficer,
   getAllComplaints,
-  updateComplaintStatus
+  updateComplaintStatus,
 };

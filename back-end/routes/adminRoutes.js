@@ -22,4 +22,8 @@ router.delete('/officers/:id', adminController.deleteOfficer);
 router.get('/complaints', adminController.getAllComplaints);
 router.put('/complaints/:id', adminController.updateComplaintStatus); // Example
 
+//create admin
+router.post('/admin', adminController.createAdmin);
+router.post('/login', adminController.loginAdmin);
+
 module.exports = router;
