@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './AdminDash.css'
 import Grid from '@mui/system/Unstable_Grid';
 import Box from '@mui/system/Box';
@@ -17,28 +17,33 @@ const Item = styled('div')(({ theme }) => ({
   display:'flex',
   flexDirection:"column"
 }));
+
+const [view, setView] = useState('')
+
+const handleMenuClick = (page)=> {
+  setView(page)
+}
+
   return (
     <div className='admin-dash'>
-  
-
-  
-
     <Box sx={{ width: '100%' }}>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
         <Grid xs={3}>
           <Item>
-          <button className='Menu-Link'>ViewUsers</button>
-          <button className='Menu-Link'>ViewOfficers</button>
-          <button className='Menu-Link'>ViewComplients</button>
-          <button className='Menu-Link'>Create Officers</button>
+          <button className='Menu-Link' onClick={()=>handleMenuClick('ViewUsers')}>ViewUsers</button>
+
+          <button className='Menu-Link' onClick={()=>handleMenuClick('ViewOfficers')}>ViewOfficers</button>
+
+          <button className='Menu-Link' onClick={()=>handleMenuClick('ViewComplients')}>ViewComplients</button>
+
+          <button className='Menu-Link' onClick={()=>handleMenuClick('Create Officer')}>Create Officers</button>
           </Item>
         </Grid>
-        
+
         <Grid xs={9}>
 
-          <Item>2</Item>
-
-
+          <Item>{view}</Item>
+          
         </Grid>
       </Grid>
     </Box>
