@@ -13,7 +13,7 @@ import UserProfile from './pages/UserProfile';
 import ComplientRegister from './pages/ComplientRegister';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AdminDashbord from './pages/AdminDashbord';
+import AdminDashbord from './pages/AdminDash/AdminDashbord';
 
 const App = () => {
     return (

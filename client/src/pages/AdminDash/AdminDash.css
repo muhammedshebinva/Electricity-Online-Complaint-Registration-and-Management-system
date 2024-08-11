@@ -1,0 +1,15 @@
+.Menu-Link{
+    border: .5px solid;
+    border-radius: 10px;
+    height: 40px;
+    color: black;
+    font-size: 17px;
+    text-decoration: none;
+    padding-top: 7px;
+    margin-top: 10px;
+}
+
+.Menu-Link:hover{
+    background-color: rgb(80, 79, 79);
+    color: white;
+}
