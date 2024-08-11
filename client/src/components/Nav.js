@@ -3,14 +3,14 @@ import {  Link } from "react-router-dom";
 import AuthContext from '../provider/authContext';
 import './Nav.css'
 
-import Box from '@mui/material/Box';
+//import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
+//import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
@@ -47,8 +47,8 @@ function Nav() {
             <Link className='myLink' to="/">Home</Link>
           </li>
           <li className='dropdown'>
-          <Link class="myLink">Services</Link>
-          <div class="dropdown-content">
+          <Link className="myLink">Services</Link>
+          <div className="dropdown-content">
             <Link className='myLink' to='/complient'>Register Complient</Link>
             <Link className='myLink' to='/'>Complient Status</Link>
             <Link className='myLink' to="/protected">contact</Link>
