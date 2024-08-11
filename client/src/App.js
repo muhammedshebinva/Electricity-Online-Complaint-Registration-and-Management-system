@@ -13,6 +13,7 @@ import UserProfile from './pages/UserProfile';
 import ComplientRegister from './pages/ComplientRegister';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AdminDashbord from './pages/AdminDashbord';
 
 const App = () => {
     return (
@@ -20,12 +21,15 @@ const App = () => {
         <Router>
                 <Routes>
                     <Route path="/" element={<Layout />}> 
+
                     <Route index element={<Home/>} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Registration/>} />
                     <Route path="/protected" element={<Users />} />
                     <Route path='/profile' element={<UserProfile/>}/>
                     <Route path='/complient' element= {<ComplientRegister/>}/>
+
+                    <Route path='/admin/dashbord' element={<AdminDashbord/>}/>
                     </Route>  
                 </Routes>
             </Router>
