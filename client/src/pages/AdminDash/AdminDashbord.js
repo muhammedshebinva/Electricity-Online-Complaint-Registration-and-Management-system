@@ -7,6 +7,7 @@ import styled from '@mui/system/styled';
 import AuthContext from '../../provider/authContext';
 import ViewUsers from './ViewUsers';
 import { useNavigate } from 'react-router-dom';
+import ViewOfficers from './ViewOfficers';
 
 function AdminDashbord() {
 
@@ -43,7 +44,7 @@ if(!token){
           <Item>
           <button className='Menu-Link' onClick={()=>handleMenuClick(<ViewUsers/>)}>ViewUsers</button>
 
-          <button className='Menu-Link' onClick={()=>handleMenuClick('ViewOfficers')}>ViewOfficers</button>
+          <button className='Menu-Link' onClick={()=>handleMenuClick(<ViewOfficers/>)}>ViewOfficers</button>
 
           <button className='Menu-Link' onClick={()=>handleMenuClick('ViewComplients')}>ViewComplients</button>
 

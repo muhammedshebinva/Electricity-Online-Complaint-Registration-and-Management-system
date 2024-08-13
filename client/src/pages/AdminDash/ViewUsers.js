@@ -54,7 +54,7 @@ function ViewUsers() {
     ): (
         <p>No user data avilable</p>
     )
-}
+    }
     
     
     

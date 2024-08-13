@@ -32,11 +32,26 @@ export const getAllUsers = async (token) =>{
             } 
         }
         const response = await axios.get(`${BASE_URL}/users`, config);
-        console.log("response to get users", response.data)
-        
         return response.data;
     }catch(error){
         console.log("get user profile error",error)
+    }
+}
+
+//get all officers
+
+export const getAllOfficers = async (token) => {
+    try{
+        const config ={
+            headers:{
+                authorization:`Bearer ${token}`
+            }  
+        }
+        const response = await axios.get(`${BASE_URL}/officers`, config);
+        return response.data;
+
+    }catch(error){
+        console.log("get officer profile error", error)
     }
 }
 
