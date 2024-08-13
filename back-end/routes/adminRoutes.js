@@ -7,20 +7,20 @@ const {adminAuth} = require('../middleware/authMiddleware'); // Assuming JWT aut
 //router.use(authMiddleware);
 
 // User routes
-router.get('/users', adminController.getAllUsers);
-router.post('/users', adminController.createUser);
-router.put('/users/:id', adminController.updateUser);
-router.delete('/users/:id', adminController.deleteUser);
+router.get('/users',adminAuth, adminController.getAllUsers);
+router.post('/users',adminAuth, adminController.createUser);
+router.put('/users/:id',adminAuth, adminController.updateUser);
+router.delete('/users/:id',adminAuth, adminController.deleteUser);
 
 // Officer routes
-router.get('/officers', adminController.getAllOfficers);
+router.get('/officers',adminAuth, adminController.getAllOfficers);
 router.post('/officers',adminAuth, adminController.createOfficer);
-router.put('/officers/:id', adminController.updateOfficer);
-router.delete('/officers/:id', adminController.deleteOfficer);
+router.put('/officers/:id',adminAuth, adminController.updateOfficer);
+router.delete('/officers/:id',adminAuth, adminController.deleteOfficer);
 
 // Complaint routes
-router.get('/complaints', adminController.getAllComplaints);
-router.put('/complaints/:id', adminController.updateComplaintStatus); // Example
+router.get('/complaints',adminAuth, adminController.getAllComplaints);
+router.put('/complaints/:id',adminAuth, adminController.updateComplaintStatus); // Example
 
 //create admin
 router.post('/admin', adminController.createAdmin);
