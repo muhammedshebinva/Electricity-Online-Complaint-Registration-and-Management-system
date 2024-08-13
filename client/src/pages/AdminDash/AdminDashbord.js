@@ -8,6 +8,7 @@ import AuthContext from '../../provider/authContext';
 import ViewUsers from './ViewUsers';
 import { useNavigate } from 'react-router-dom';
 import ViewOfficers from './ViewOfficers';
+import ViewComplients from './ViewComplients';
 
 function AdminDashbord() {
 
@@ -21,7 +22,9 @@ const Item = styled('div')(({ theme }) => ({
   margin:'10px',
   height:'80vh',
   display:'flex',
-  flexDirection:"column"
+  flexDirection:"column",
+  overflow: 'scroll'
+
 }));
 
 const [view, setView] = useState()
@@ -46,13 +49,13 @@ if(!token){
 
           <button className='Menu-Link' onClick={()=>handleMenuClick(<ViewOfficers/>)}>ViewOfficers</button>
 
-          <button className='Menu-Link' onClick={()=>handleMenuClick('ViewComplients')}>ViewComplients</button>
+          <button className='Menu-Link' onClick={()=>handleMenuClick(<ViewComplients/>)}>ViewComplients</button>
 
           <button className='Menu-Link' onClick={()=>handleMenuClick('Create Officer')}>Create Officers</button>
           </Item>
         </Grid>
 
-        <Grid xs={9}>
+        <Grid  xs={9}>
 
           <Item>{view}</Item>
           

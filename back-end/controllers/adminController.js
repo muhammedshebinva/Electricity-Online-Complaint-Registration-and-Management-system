@@ -295,7 +295,7 @@ const getAllUsers = async (req, res) => {
 
   const getAllComplaints = async (req, res) => {
     try {
-      const complaints = await Complaint.find().populate('user'); // Populate user information
+      const complaints = await Complaint.find().populate('user','email name'); // Populate user information
       //const complaints = await Complaint.find();
       res.status(200).json(complaints);
     } catch (error) {

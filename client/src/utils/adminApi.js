@@ -55,3 +55,24 @@ export const getAllOfficers = async (token) => {
     }
 }
 
+// getAllComplients
+
+export const getAllcomplaints = async (token) => {
+    try{
+        const config ={
+            headers:{
+                authorization:`Bearer ${token}`
+            }  
+        }
+        const response = await axios.get(`${BASE_URL}/complaints`, config);
+        return response.data;
+
+    }catch(error){
+        console.log("get complaints error", error)
+    }
+}
+
+
+
+
+

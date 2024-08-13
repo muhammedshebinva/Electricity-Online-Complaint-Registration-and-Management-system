@@ -21,9 +21,9 @@ const UsersTable = (data) => {
       <tbody>
       {data.data.map((user) => (
           <tr key={user.id} >
-         <td>{index++}</td>
-         <td>{user.name}</td>
-         <td>{user.email}</td>
+         <td key={user.id}>{index++}</td>
+         <td key={user.id}>{user.name}</td>
+         <td key={user.id}>{user.email}</td>
           </tr>
         ))}
       </tbody>

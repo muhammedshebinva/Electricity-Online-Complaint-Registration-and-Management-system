@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import AuthContext from '../../provider/authContext';
 import { getAllOfficers } from '../../utils/adminApi';
-import UsersTable from '../../components/UsersTable/UsersTable';
+import UsersTable from '../../components/Tables/UsersTable';
 
 
 function ViewOfficers() {
