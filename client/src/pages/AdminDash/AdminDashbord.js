@@ -1,8 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './AdminDash.css'
 import Grid from '@mui/system/Unstable_Grid';
 import Box from '@mui/system/Box';
 import styled from '@mui/system/styled';
+
+import AuthContext from '../../provider/authContext';
+import ViewUsers from './ViewUsers';
+import { useNavigate } from 'react-router-dom';
+
 function AdminDashbord() {
 
 const Item = styled('div')(({ theme }) => ({
@@ -18,10 +23,16 @@ const Item = styled('div')(({ theme }) => ({
   flexDirection:"column"
 }));
 
-const [view, setView] = useState('')
+const [view, setView] = useState()
+const {token} = useContext(AuthContext)
+const navigate = useNavigate();
 
 const handleMenuClick = (page)=> {
   setView(page)
+}
+
+if(!token){
+  navigate('/admin/login')
 }
 
   return (
@@ -30,7 +41,7 @@ const handleMenuClick = (page)=> {
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
         <Grid xs={3}>
           <Item>
-          <button className='Menu-Link' onClick={()=>handleMenuClick('ViewUsers')}>ViewUsers</button>
+          <button className='Menu-Link' onClick={()=>handleMenuClick(<ViewUsers/>)}>ViewUsers</button>
 
           <button className='Menu-Link' onClick={()=>handleMenuClick('ViewOfficers')}>ViewOfficers</button>
 
