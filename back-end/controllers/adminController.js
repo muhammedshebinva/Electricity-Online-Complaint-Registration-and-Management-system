@@ -74,6 +74,7 @@ const loginAdmin = async (req, res) => {
       _id: admin._id,
       name: admin.name,
       email: admin.email,
+      role: admin.role,
       token,
     });
   } catch (error) {
@@ -125,13 +126,12 @@ const getAllUsers = async (req, res) => {
 
   const createUser = async (req, res) => {
     try {
-      const { name, email, password, role } = req.body;
+      const { name, email, password } = req.body;
   
       // Check if user already exists
       const existingUser = await User.findOne({ email });
       if (existingUser) {
-        return res.status(400).json({   
-   message: 'User already exists' });
+        return res.status(400).json({ message: 'User already exists' });
       }
   
       // Hash password
@@ -142,14 +142,19 @@ const getAllUsers = async (req, res) => {
         name,
         email,
         password: hashedPassword,
-        role,
       });
   
-      res.status(201).json(newUser);
+      res.status(201).json({
+        _id: newUser._id,
+        name: newUser.name,
+        email: newUser.email,
+        role:newUser.role,
+      }
+      );
+
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message:   
-   'Server Error' });
+      res.status(500).json({ message:'Server Error' });
     }
   };
 
@@ -180,7 +185,7 @@ const getAllUsers = async (req, res) => {
     }
   };
 
-  
+
   const deleteUser = async (req, res) => {
     try {
         const { id } = req.params;
@@ -198,11 +203,12 @@ const getAllUsers = async (req, res) => {
         res.status(500).json({ message: 'Server Error' });
       }
   };
-
+//get all officers
 
   const getAllOfficers = async (req, res) => {
     try {
       const officers = await Officer.find();
+
       res.status(200).json(officers);
     } catch (error) {
       console.error(error);
@@ -211,6 +217,7 @@ const getAllUsers = async (req, res) => {
   };
 
 
+  //create officer
 
   const createOfficer = async (req, res) => {
     try {

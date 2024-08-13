@@ -38,29 +38,28 @@ const authMiddleware = async (req, res, next) => {
   }
 };
 
-// const adminAuth = async (req, res, next) => {
-//   try {
-//     const authHeader = req.headers.authorization;
-//     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-//       return res.status(401).json({   
-//  message: 'Unauthorized: Missing JWT token' });
-//     }
+const adminAuth = async (req, res, next) => {
+  try {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ message: 'Unauthorized: Missing JWT token' });
+    }
 
-//     const token = authHeader.split(' ')[1];
-//     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-//     const user = await User.findById(decoded.id);
+    const token = authHeader.split(' ')[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await Admin.findById(decoded.id);
 
-//     if (!user || user.role !== 'admin') {
-//       return res.status(403).json({ message: 'Forbidden: Access denied' });
-//     }
+    if (!user || user.role !== 'admin') {
+      return res.status(403).json({ message: 'Forbidden: Access denied' });
+    }
 
-//     req.user = user;
-//     next();
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: 'Server Error' });
-//   }
-// };
+    req.user = user;
+    next();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
 
 // const officerAuth = async (req, res, next) => {
 //   try {
@@ -86,5 +85,9 @@ const authMiddleware = async (req, res, next) => {
 // };
 
 
-module.exports =  authMiddleware
+module.exports =  {
+  authMiddleware,
+  adminAuth
+
+}
 

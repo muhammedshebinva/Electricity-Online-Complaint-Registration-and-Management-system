@@ -4,6 +4,7 @@ const officerSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  role:{type: String, enum: ['officer'], default: 'officer'},
   department: { type: String, required: true, enum: ['KSEB', 'WATER'], default: 'KSEB'}, 
   contactNumber: { type: String },
   

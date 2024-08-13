@@ -12,6 +12,7 @@ const userRoutes = require('./routes/userRoutes');  
 const officerRoutes = require('./routes/officerRoutes');
 const complaintRoutes = require('./routes/complaintRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const { adminAuth } = require('./middleware/authMiddleware');
 
 connectDB();
 const app = express();
@@ -25,7 +26,7 @@ app.use(express.json());  
 // Routes
 //app.use('/api/users', require('./routes/userRoutes'));
 // ... other routes
-app.get('/', (req,res)=>{
+app.get('/', adminAuth, (req,res)=>{
     res.send("hello")
 })
 

@@ -45,6 +45,7 @@ const registerUser = async (req, res) => {
       _id: newUser._id,
       name: newUser.name,
       email: newUser.email,
+      role:newUser.role,
       token,
     });
     
@@ -76,6 +77,7 @@ const loginUser = async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      role:user.role,
       token,
     });
   } catch (error) {

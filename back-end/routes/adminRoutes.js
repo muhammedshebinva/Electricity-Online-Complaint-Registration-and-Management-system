@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const adminController = require('../controllers/adminController');
-const authMiddleware = require('../middleware/authMiddleware'); // Assuming JWT authentication
+const {adminAuth} = require('../middleware/authMiddleware'); // Assuming JWT authentication
 
 // Protect all admin routes
 //router.use(authMiddleware);
@@ -14,7 +14,7 @@ router.delete('/users/:id', adminController.deleteUser);
 
 // Officer routes
 router.get('/officers', adminController.getAllOfficers);
-router.post('/officers', adminController.createOfficer);
+router.post('/officers',adminAuth, adminController.createOfficer);
 router.put('/officers/:id', adminController.updateOfficer);
 router.delete('/officers/:id', adminController.deleteOfficer);
 
