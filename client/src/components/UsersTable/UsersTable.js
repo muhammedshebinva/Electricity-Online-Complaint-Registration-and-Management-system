@@ -1,5 +1,5 @@
 import React from 'react'
-
+import '../../App.css'
 const UsersTable = (data) => {
   const columns = [
     { header: 'ID', dataKey: 'id' },
@@ -7,8 +7,7 @@ const UsersTable = (data) => {
     { header: 'Email', dataKey: 'email' },
     // Add more columns as needed
   ];
-
-
+  let index = 1;
   
   return (
     <table>
@@ -21,10 +20,10 @@ const UsersTable = (data) => {
       </thead>
       <tbody>
       {data.data.map((user) => (
-          <tr key={user.id}>
-            {columns.map((column) => (
-              <td key={column.dataKey}>{user[column.dataKey]}</td>
-            ))}
+          <tr key={user.id} >
+         <td>{index++}</td>
+         <td>{user.name}</td>
+         <td>{user.email}</td>
           </tr>
         ))}
       </tbody>
