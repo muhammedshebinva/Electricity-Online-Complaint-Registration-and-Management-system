@@ -9,6 +9,7 @@ import ViewUsers from './ViewUsers';
 import { useNavigate } from 'react-router-dom';
 import ViewOfficers from './ViewOfficers';
 import ViewComplients from './ViewComplients';
+import CreateOfficer from './CreateOfficer';
 
 function AdminDashbord() {
 
@@ -51,7 +52,7 @@ if(!token){
 
           <button className='Menu-Link' onClick={()=>handleMenuClick(<ViewComplients/>)}>ViewComplients</button>
 
-          <button className='Menu-Link' onClick={()=>handleMenuClick('Create Officer')}>Create Officers</button>
+          <button className='Menu-Link' onClick={()=>handleMenuClick(<CreateOfficer/>)}>Create Officers</button>
           </Item>
         </Grid>
 

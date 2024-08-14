@@ -72,6 +72,28 @@ export const getAllcomplaints = async (token) => {
     }
 }
 
+export const registerOfficer  = async (formData,token) => {
+    try {
+        const response = await fetch(`${BASE_URL}/officers`, {
+            method: 'POST',
+            headers: {
+                authorization:`Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+        if(!response.ok){
+            throw new Error('Officer Registation Failed')
+        }
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+    throw error;
+  }
+}
+
 
 
 
