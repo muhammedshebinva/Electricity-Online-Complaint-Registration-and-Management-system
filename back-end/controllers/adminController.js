@@ -277,8 +277,8 @@ const getAllUsers = async (req, res) => {
   
   const deleteOfficer = async (req, res) => {
     try {
-      const { id } = req.params;
-  
+      const  id  = req.params.id;
+      // const { id } = req.query;
       // Find and delete the officer
       const officer = await Officer.findByIdAndDelete(id);
   
