@@ -94,6 +94,22 @@ export const registerOfficer  = async (formData,token) => {
   }
 }
 
+//delete User
+
+export const deleteOfficer = async (officerId, token) => {
+  try {
+    const response = await axios.delete(`${BASE_URL}/officers/${officerId}`, {
+      headers: {
+        'authorization': `Bearer ${token}` // Replace with your authentication scheme
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error deleting officer:', error);
+    throw error; // Or handle the error appropriately
+  }
+};
+
 
 
 

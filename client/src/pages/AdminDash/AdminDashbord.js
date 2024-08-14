@@ -57,8 +57,8 @@ if(!token){
         </Grid>
 
         <Grid  xs={9}>
-
-          <Item>{view}</Item>
+        {view ?  <Item>{view}</Item> : <Item> <h4>Welcome to Admin DashBoard</h4> </Item>}
+         
           
         </Grid>
       </Grid>
