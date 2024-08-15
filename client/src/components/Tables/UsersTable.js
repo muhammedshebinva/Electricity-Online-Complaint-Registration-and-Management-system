@@ -9,7 +9,7 @@ const UsersTable = (data) => {
     { header: 'ID', dataKey: 'id' },
     { header: 'Name', dataKey: 'name' },
     { header: 'Email', dataKey: 'email' },
-    { header: 'Action', dataKey: 'action' },
+    { header: 'detete', dataKey: 'action' },
     // Add more columns as needed
   ];
   let index = 1;
