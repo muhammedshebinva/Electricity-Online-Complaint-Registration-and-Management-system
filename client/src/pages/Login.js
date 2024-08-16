@@ -88,7 +88,6 @@ const Login = () => {
 
         
           try {
-
             const response = await loginUser(userData);
             login(response.token);
             setUserInfo(response);

@@ -23,11 +23,10 @@ function Registration() {
         e.preventDefault();
         try{
             const response = await registerUser(formData);
-            console.log(response)
             login(response.token)
 
             setUserInfo(response);
-            console.log("token",response.token)
+          
             
             setRedirect(true);
             
