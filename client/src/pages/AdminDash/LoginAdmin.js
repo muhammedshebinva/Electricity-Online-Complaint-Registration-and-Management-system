@@ -36,7 +36,7 @@ const LoginAdmin = () => {
           try {
 
             const response = await loginAdmin(userData);
-            login(response.token);
+            login(response);
             setUserInfo(response);
             navigate('/admin/dashbord');
             

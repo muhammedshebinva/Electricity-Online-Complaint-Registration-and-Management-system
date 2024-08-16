@@ -17,14 +17,13 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 
 function Nav() {
-    const {logout,token,userInfo} = useContext(AuthContext);
+    const {logout,token,userRole} = useContext(AuthContext);
 
  
      
     function handleLogout(){
         logout()   
     }
-
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -51,12 +50,12 @@ function Nav() {
             <li>
               <Link className='myLink' to="/">Home</Link>
             </li>
-            {userInfo.role === "admin" &&
+            {userRole === "admin" &&
             <li>
                  <Link className='myLink' to="/admin/dashbord">Admin Dashbord</Link>
             </li>
             }
-            {userInfo.role === "user" &&
+            {userRole === "user" &&
             <li className='dropdown'>
             <Link className="myLink">Services</Link>
             <div className="dropdown-content">
@@ -78,7 +77,7 @@ function Nav() {
               </li>
               }
            
-             {userInfo.role === "user" &&
+             {userRole === "user" &&
               <li>
                    <Link className='myLink' to="/profile">profile</Link>
               </li>
@@ -135,9 +134,7 @@ function Nav() {
           transformOrigin={{ horizontal: 'right', vertical: 'top' }}
           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
-          <MenuItem onClick={handleClose}>
-            <Avatar /> <Link className='manuLink' to={'/profile'}>Profile</Link> 
-          </MenuItem>
+
           <MenuItem onClick={handleClose}>
             <Avatar /><Link className='manuLink' to={'/profile'}> My account</Link> 
           </MenuItem>
@@ -146,7 +143,8 @@ function Nav() {
             <ListItemIcon>
               <PersonAdd fontSize="small" />
             </ListItemIcon>
-            Add another account
+            
+            <Link className='manuLink' to={'/login'}> Add another account</Link>
           </MenuItem>
           <MenuItem onClick={handleClose}>
             <ListItemIcon>
