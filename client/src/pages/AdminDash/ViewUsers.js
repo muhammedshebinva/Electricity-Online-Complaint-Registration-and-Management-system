@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import AuthContext from '../../provider/authContext';
 import { getAllUsers } from '../../utils/adminApi';
-import UsersTable from '../../components/Tables/UsersTable';
+import { deleteUser } from '../../utils/adminApi';
 
 function ViewUsers() {
 
@@ -10,24 +10,26 @@ function ViewUsers() {
     const [error, setError] = useState(null);
     const [usersData, setUsersData] = useState([]);
     //get users 
+
+    const fetchAllUsers = async ()=>{
+        setIsloading(true);
+        setError(null);
+        try{
+            const response = await getAllUsers(token)
+            // console.log("hello",response)
+            setUsersData(response)
+
+        }catch(error){
+            console.log('Error fetching users:', error)
+            setError(error)
+        }finally{
+            setIsloading(false)
+        };
+        
+    }
+
     useEffect(()=>{
 
-        const fetchAllUsers = async ()=>{
-            setIsloading(true);
-            setError(null);
-            try{
-                const response = await getAllUsers(token)
-                // console.log("hello",response)
-                setUsersData(response)
-    
-            }catch(error){
-                console.log('Error fetching users:', error)
-                setError(error)
-            }finally{
-                setIsloading(false)
-            };
-            
-        }
         if(token){
             fetchAllUsers()
         }
@@ -42,6 +44,29 @@ function ViewUsers() {
         )  
     }
 
+    //table
+    const columns = [
+        { header: 'ID', dataKey: 'id' },
+        { header: 'Name', dataKey: 'name' },
+        { header: 'Email', dataKey: 'email' },
+        { header: 'detete', dataKey: 'action' },
+        // Add more columns as needed
+      ];
+      let index = 1;
+    
+      const handleClick = async(id,token)=>{
+        try{
+          
+          const res = await deleteUser(id,token)
+          fetchAllUsers()
+          alert(res.message)
+    
+        }catch(error){
+          console.log("Delete officer error ")
+        }
+        
+      } 
+
   return (
     <div>
 
@@ -49,8 +74,27 @@ function ViewUsers() {
         <p>Loading user profile ...</p>
     ) : error ? (
         <p>Error loading user profile</p>
-    ) : usersData ? (    
-       <UsersTable data={usersData} />
+    ) : usersData ? (  
+          //table
+    <table>
+    <thead>
+      <tr>
+        {columns.map((column) => (
+          <th key={column.dataKey}>{column.header}</th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+    {usersData.map((user) => (
+      <tr key={user.id} >
+       <td key={user.id}>{index++}</td>
+       <td key={user.id}>{user.name}</td>
+       <td key={user.id}>{user.email}</td>
+       <button onClick={()=>handleClick(user._id,token)}>Delete</button>
+      </tr>
+      ))}
+    </tbody>
+  </table>
     ): (
         <p>No user data avilable</p>
     )

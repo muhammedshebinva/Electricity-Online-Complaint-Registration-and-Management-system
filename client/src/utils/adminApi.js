@@ -37,6 +37,21 @@ export const getAllUsers = async (token) =>{
         console.log("get user profile error",error)
     }
 }
+//delete user
+export const deleteUser = async (userId, token) => {
+    try {
+      const response = await axios.delete(`${BASE_URL}/users/${userId}`, {
+        headers: {
+          'authorization': `Bearer ${token}` // Replace with your authentication scheme
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error deleting officer:', error);
+      throw error; // Or handle the error appropriately
+    }
+  };
+
 
 //get all officers
 
@@ -109,6 +124,9 @@ export const deleteOfficer = async (officerId, token) => {
     throw error; // Or handle the error appropriately
   }
 };
+
+
+
 
 
 
