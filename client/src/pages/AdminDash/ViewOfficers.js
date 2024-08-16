@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import AuthContext from '../../provider/authContext';
 import { getAllOfficers } from '../../utils/adminApi';
 import UsersTable from '../../components/Tables/UsersTable';
-
+import { deleteOfficer } from '../../utils/adminApi';
 
 function ViewOfficers() {
     const [isLoading, setIsloading] = useState(false);
@@ -11,9 +11,8 @@ function ViewOfficers() {
     const [usersData, setUsersData] = useState([]);
 
      //get users 
-     useEffect(()=>{
 
-    const fetchAllUsers = async ()=>{
+     const fetchAllUsers = async ()=>{
     setIsloading(true);
     setError(null);
     try{
@@ -26,9 +25,10 @@ function ViewOfficers() {
         setError(error)
     }finally{
         setIsloading(false)
-    };
-    
-}
+    }; 
+}    
+
+useEffect(()=>{
 
 if(token){
     fetchAllUsers()
@@ -36,6 +36,29 @@ if(token){
 
 
 },[token])
+
+
+const columns = [
+    { header: 'ID', dataKey: 'id' },
+    { header: 'Name', dataKey: 'name' },
+    { header: 'Email', dataKey: 'email' },
+    { header: 'detete', dataKey: 'action' },
+    // Add more columns as needed
+  ];
+  let index = 1;
+
+  const handleClick = async(id,token)=>{
+    try{
+      
+      const res = await deleteOfficer(id,token)
+      fetchAllUsers()
+      alert(res.message)
+
+    }catch(error){
+      console.log("Delete officer error ")
+    }
+    
+  }
 
 if(!token){
         return (
@@ -51,8 +74,31 @@ if(!token){
         <p>Loading ofiicers profile ...</p>
     ) : error ? (
         <p>Error loading ofiicers profile</p>
-    ) : usersData ? (    
-       <UsersTable data={usersData} />
+    ) : usersData ? (   
+        //table
+    <table>
+      <thead>
+        <tr>
+          {columns.map((column) => (
+            <th key={column.dataKey}>{column.header}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+      {usersData.map((user) => (
+        <tr key={user.id} >
+         <td key={user.id}>{index++}</td>
+         <td key={user.id}>{user.name}</td>
+         <td key={user.id}>{user.email}</td>
+         <button onClick={()=>handleClick(user._id,token)}>Delete</button>
+        </tr>
+        ))}
+      </tbody>
+    </table>
+        
+
+
+    //    <UsersTable data={usersData} />
     ): (
         <p>No officers data avilable</p>
     )
