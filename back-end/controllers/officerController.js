@@ -34,6 +34,7 @@ const officerLogin = async (req, res) => {
       _id: officer._id,
       name: officer.name,
       email: officer.email,
+      role:officer.role,
       token,
     });
   } catch (error) {

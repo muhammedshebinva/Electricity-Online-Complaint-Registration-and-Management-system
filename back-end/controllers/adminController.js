@@ -13,6 +13,7 @@ const generateToken = (id, email) => {
 
 
 ////
+
 //crete admin
 const createAdmin = async (req, res) => {
   try {

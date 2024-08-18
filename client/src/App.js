@@ -15,6 +15,7 @@ import ComplientRegister from './pages/ComplientRegister';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AdminDashbord from './pages/AdminDash/AdminDashbord';
 import LoginAdmin from './pages/AdminDash/LoginAdmin';
+import OfficerLogin from './pages/OfficerDashboard/OfficerLogin';
 
 const App = () => {
     return (
@@ -32,6 +33,9 @@ const App = () => {
 
                     <Route path='/admin/dashbord' element={<AdminDashbord/>}/>
                     <Route path='/admin/login' element={<LoginAdmin/>}/>
+
+                    <Route path='/officer/login' element={<OfficerLogin/>}/>
+
                     </Route>  
                 </Routes>
             </Router>
