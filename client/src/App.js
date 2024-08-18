@@ -16,6 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import AdminDashbord from './pages/AdminDash/AdminDashbord';
 import LoginAdmin from './pages/AdminDash/LoginAdmin';
 import OfficerLogin from './pages/OfficerDashboard/OfficerLogin';
+import OfficerDashboard from './pages/OfficerDashboard/OfficerDashboard';
 
 const App = () => {
     return (
@@ -35,6 +36,7 @@ const App = () => {
                     <Route path='/admin/login' element={<LoginAdmin/>}/>
 
                     <Route path='/officer/login' element={<OfficerLogin/>}/>
+                    <Route path='/officer/dashboard' element={<OfficerDashboard/>}/>
 
                     </Route>  
                 </Routes>

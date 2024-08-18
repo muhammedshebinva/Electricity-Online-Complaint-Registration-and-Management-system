@@ -17,9 +17,27 @@ export const loginOfficer = async (formData) => {
     }
     const data =  await response.json()
     return data;
-    
+
  }catch(error){ 
     alert("Officer Login Error")
    console.log(error)
  }
+}
+
+export const getAllComplaints = async (token) => {
+    try{
+        const response = await fetch(`${BASE_URL}/complaints`,{
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        if(!response.ok){
+            throw new Error('Network response was not okay')
+        }
+        const data = await response.json()
+        return data;
+
+    }catch(error){
+        console.log("get api eror",error)
+    }
 }
