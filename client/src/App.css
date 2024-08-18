@@ -92,3 +92,23 @@ tr:hover{
 .field-name-th{
   width: 150px;
 }
+
+.statusbutton{
+  border: none;
+  text-decoration: none;
+  background-color: #3d86ab;
+  width: 150px;
+  color: white;
+  font-size: larger;
+  cursor: pointer;
+}
+
+.statusbutton:hover{
+  background-color: #45a049;
+}
+.Status-select{
+  width: 150px;
+  font-size: medium;
+  margin-right: 10px;
+  height: 26px;
+}

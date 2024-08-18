@@ -41,3 +41,26 @@ export const getAllComplaints = async (token) => {
         console.log("get api eror",error)
     }
 }
+
+//upadte status
+export const upadteComplaintStatus = async (complaintId,status)=>{
+    try {
+        const response = await fetch(`${BASE_URL}/complaints/${complaintId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ status: status })
+        });
+  
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+  
+        const data = await response.json()
+        return data;
+        
+      } catch (error) {
+        console.log(error)
+      }
+}

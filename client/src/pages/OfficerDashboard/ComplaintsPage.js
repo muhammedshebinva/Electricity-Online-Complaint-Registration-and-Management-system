@@ -73,7 +73,8 @@ let index = 1;
             <tr key={data.id} onClick={()=> handleRowClick(<ViewComplaint data={data} />)} >
             <td> {index++} </td>
             <td> {data.title} </td>
-            <td>  {data.status} </td>
+            <td>{data.status}</td>
+            
             </tr>
     ))}
         </tbody>

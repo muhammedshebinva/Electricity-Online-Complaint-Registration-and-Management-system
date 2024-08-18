@@ -1,6 +1,15 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import '../../App.css'
+import { upadteComplaintStatus } from '../../utils/officerApi';
 function ViewComplaint(data) {
+    const [status, setStatus] = useState(data.data.status);
+    const handleUpdate= async (id)=>{
+       const response =  await upadteComplaintStatus(id,status)
+        if(response){
+            alert("Status Updated")
+        }
+    }
+ 
   return (
     <table>
           <thead>
@@ -27,7 +36,7 @@ function ViewComplaint(data) {
 
             <tr>
                 <td>status</td>
-                <td>{data.data.status}</td>
+                <td>{status}</td>
            </tr>
 
           <tr>
@@ -43,6 +52,17 @@ function ViewComplaint(data) {
          <tr>
             <td>image</td>
             <td><pre>{JSON.stringify(data.data.image, null, 2)}</pre></td>
+         </tr>
+
+         <tr>
+            <td>update Status</td>
+            <td>
+            <select className='Status-select' value={status} onChange={(e) => setStatus(e.target.value)}>
+            <option value="pending">Pending</option>
+            <option value="working">Working</option>
+            <option value="completed">Completed</option>
+          </select>
+            <button className='statusbutton' onClick={()=>handleUpdate(data.data._id)}>Submit</button></td>
          </tr>
 
 
