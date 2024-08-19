@@ -41,7 +41,7 @@ const OfficerLogin = () => {
             const response = await loginOfficer(userData);
             login(response);
             setUserInfo(response);
-            navigate('/officer/dashbord');
+            navigate('/officer/dashboard');
             
         } catch (error) {
             console.error(error);

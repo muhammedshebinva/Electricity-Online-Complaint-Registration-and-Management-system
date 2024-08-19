@@ -17,7 +17,19 @@ function Home() {
     <div >
     <div className='home-page-main'> </div>
     
-    {token ? <h1>Home</h1> :
+    {token ? 
+      <div>
+      <div className='home-control-div'>
+      <h1>register Your Complaints</h1>
+      <p>This platform enables you to register your complaints</p>
+      </div>
+      <div className='home-button-div'>
+      <button className='home-button' onClick={()=>navigate('/complient')}>Register Complaint</button> <br></br>
+      <button className='home-button' onClick={()=>navigate('/')}>View Complaint Status</button> <br></br>
+      <button className='home-button' onClick={()=>navigate('/protected')}>contact</button> <br></br>
+      </div>
+      </div>
+      :
     <div>
     <div className='home-control-div'>
     <h1>register Your Complaints</h1>
